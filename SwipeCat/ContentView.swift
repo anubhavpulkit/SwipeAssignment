@@ -20,7 +20,18 @@ struct ContentView: View {
                 }
             }
             .listStyle(GroupedListStyle())
-                .navigationTitle("Contacts")
+                .navigationTitle("Swipe Catalog")
+                .overlay(alignment: .bottomTrailing, content: {
+                    NavigationLink {
+                        AddNewCatalog()
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundStyle(Color.white, Color.orange)
+                            .padding(.trailing)
+                    }
+                })
         }
         .task {
             await viewModel.fetchData()
@@ -57,7 +68,7 @@ struct ContentView: View {
             Spacer()
             VStack(alignment: .leading){
                 Text("$\(item.price, specifier: "%.1f")")
-                Text("Tax: ").font(.subheadline) + Text("$\(item.tax, specifier: "%.1f")").foregroundStyle(Color.red).font(.subheadline)
+                Text("Tax: ").font(.subheadline) + Text("$\(item.tax, specifier: "%.1f")").foregroundStyle(Color.orange).font(.subheadline)
             }.foregroundStyle(Color.black)
         }
         .padding()
@@ -65,7 +76,7 @@ struct ContentView: View {
             .background(
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.white)
-                    .shadow(color: .gray, radius: 2, x: 0, y: 2))
+                    .shadow(color: .gray, radius: 1, x: 0, y: 2))
     }
 
 
