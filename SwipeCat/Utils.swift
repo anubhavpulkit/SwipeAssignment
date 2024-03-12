@@ -8,21 +8,18 @@
 import Foundation
 import SwiftUI
 
-
-extension View {
-    func underlineTextField() -> some View {
+extension Image {
+    func systemImageModify() -> some View {
         self
-            .padding(.vertical, 10)
-            .overlay(Rectangle().frame(height: 2).padding(.top, 35))
-            .foregroundColor(.orange)
-            .padding(10)
+            .resizable()
+            .frame(width: 50, height: 50)
+            .foregroundStyle(Color.white, Color.orange)
     }
 }
 
 class AppConstant {
     static let screenWidth = UIScreen.main.bounds.width
     static let screenHeigh = UIScreen.main.bounds.height
-    static let NoInternet = "No Internet Connection"
 }
 
 struct CustomTextField: View {
@@ -61,6 +58,6 @@ struct CustomTextField: View {
         .background(
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color.white)
-                .shadow(color: focused ? .orange : .gray, radius: 1, x: 0, y: 2))
+                .shadow(color: isActive ? .orange : .gray, radius: 1, x: 0, y: 2))
     }
 }

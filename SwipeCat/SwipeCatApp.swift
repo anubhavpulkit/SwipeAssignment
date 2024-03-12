@@ -12,7 +12,6 @@ struct SwipeCatApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-//            AddNewCatalog()
         }
     }
 }
