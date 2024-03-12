@@ -8,6 +8,11 @@
 import Foundation
 import SwiftUI
 
+extension UIApplication {
+  func dismissKeyboard() {
+    sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    } }
+
 extension Image {
     func systemImageModify() -> some View {
         self
@@ -26,6 +31,7 @@ struct CustomTextField: View {
     @Binding var text: String
     let placeholder: String
     @FocusState var focused: Bool
+    var numPad: Bool
     
     var body: some View {
         let isActive = focused || text.count > 0
@@ -37,6 +43,7 @@ struct CustomTextField: View {
                 .offset(y: 7)
                 .focused($focused)
                 .foregroundColor(Color.orange)
+                .keyboardType(numPad ? .numberPad : .default)
             
             HStack {
                 Text(placeholder)

@@ -18,7 +18,7 @@ struct AddNewCatalog: View {
     @StateObject private var viewModel = ViewModel()
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var imageSelected = false
-    @Environment(\.presentationMode) var mode
+    @Environment(\.presentationMode) var present
     
     var body: some View {
         let dataCollected: Bool = !productName.isEmpty && !productType.isEmpty && !price.isEmpty && !tax.isEmpty && imageSelected
@@ -32,14 +32,14 @@ struct AddNewCatalog: View {
                     }
                 }
             
-            CustomTextField(text: $productName, placeholder: "Product Name")
-            CustomTextField(text: $productType, placeholder: "Product Type")
+            CustomTextField(text: $productName, placeholder: "Product Name", numPad: false)
+            CustomTextField(text: $productType, placeholder: "Product Type", numPad: false)
             
             HStack{
-                CustomTextField(text: $price, placeholder: "Price")
-                CustomTextField(text: $tax, placeholder: "Tax amount")
+                CustomTextField(text: $price, placeholder: "Price", numPad: true)
+                CustomTextField(text: $tax, placeholder: "Tax amount", numPad: true)
             }
-                
+            
             Button(action: {
                 viewModel.addNewProduct(productName: productName, productType: productType, price: price, tax: tax, imageData: imageData!)
             }){
@@ -49,7 +49,7 @@ struct AddNewCatalog: View {
                     .background(
                         RoundedRectangle(cornerRadius: 5)
                             .fill(Color.white)
-                            .shadow(color: dataCollected ? .orange : .gray, radius: 1, x: 0, y: 2))
+                            .shadow(color: dataCollected ? .orange : .white, radius: 1, x: 1, y: 2))
             }
             .disabled(!dataCollected)
             .padding(.top, 20)
@@ -60,18 +60,20 @@ struct AddNewCatalog: View {
                     tax = ""
                     price = ""
                     imageData = nil
+                    selectedItem = nil
                 }
                 let secondButton = Alert.Button.destructive(Text("Home")) {
-                    mode.wrappedValue.dismiss()
+                    present.wrappedValue.dismiss()
                 }
                 return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: firstButton, secondaryButton: secondButton)
             })
-            
-            if viewModel.isLoading {
-                ProgressView()
-                    .onDisappear {
-                        mode.wrappedValue.dismiss()
+            .toolbar{
+                ToolbarItemGroup(placement: .keyboard){
+                    Spacer()
+                    Button("Done"){
+                        UIApplication.shared.dismissKeyboard()
                     }
+                }
             }
         }.padding()
     }
