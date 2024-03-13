@@ -6,6 +6,8 @@
 <img src="https://github.com/anubhavpulkit/SwipeAssignment/assets/47811606/247a651e-038b-4b70-83c6-4bd8e302d372" width=16% height=16%>
 <img src="https://github.com/anubhavpulkit/SwipeAssignment/assets/47811606/bd54ec40-fba1-44d2-9e19-93fd44f21f35" width=16% height=16%>
 
+![Simulator Screen Recording - iPhone 15 - 2024-03-13 at 16 49 33](https://github.com/anubhavpulkit/SwipeAssignment/assets/47811606/d0c23c61-9f72-4f48-897c-a139b96ea22c)
+
 ## Tech
 - Swift - Swift is a general-purpose, multi-paradigm, compiled programming language developed by Apple Inc.
 - SwiftUI - An innovative, exceptionally simple way to build user interfaces across all Apple platforms with the power of Swift!
@@ -14,4 +16,4 @@
   
 ## Requirements
 - iOS 17.0 +
-- For best UI choose `light mode`
+- For the best UI choose `light mode`
